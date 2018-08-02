@@ -46,5 +46,6 @@ function display() {
 function endTime() {
 
 	this.textContent = "Intervalo!";
+    this.classList.add("interval");
     
 }

@@ -1,0 +1,25 @@
+
+.interval {
+	color: green;
+    text-align: center;
+}
+
+table {
+    width: 250px;
+    height: 250px;
+    border: 1px;
+    border-style: solid;
+}
+
+.center-absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    margin:0;
+}
+
+tr {
+    font-size: 4em;
+}
