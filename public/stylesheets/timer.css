@@ -4,6 +4,11 @@
     text-align: center;
 }
 
+.afterInterval {
+    color: red;
+    text-align: center;
+}
+
 table {
     width: 250px;
     height: 250px;

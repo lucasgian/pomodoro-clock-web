@@ -31,13 +31,17 @@ function startTimer(minutes, display, endedFunction) {
     
 }
 
-// controle das chamadas de funções do cronômetro
+/**
+ *  Controle das chamadas de funções, do cronômetro
+ * 	
+ * 	@param {Number} time O tempo do cronômetro, como default é 25min
+ * 	@param {Function} callback Define qual messagem será mostrada após o termino do cronômetro
+*/ 	
+function display(time=25, callback=endTime) {
 
-function display() {
-
-    const timer = document.getElementById("timer");
-    timer.deleteCell(0);
-    startTimer(25, timer.insertCell(0), endTime);
+    const display = document.getElementById("timer");
+    display.deleteCell(0);
+    startTimer(time, display.insertCell(0), callback);
 
 }
 
@@ -47,5 +51,14 @@ function endTime() {
 
 	this.textContent = "Intervalo!";
     this.classList.add("interval");
+    
+}
+
+// messagem de fim de tempo do intervalo
+
+function endTimeInterval() {
+
+	this.textContent = "Hora da ação!";
+    this.classList.add("afterInterval");
     
 }
