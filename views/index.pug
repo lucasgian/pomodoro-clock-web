@@ -2,4 +2,14 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Pomodo START #{title}
+
+  table
+    tbody
+      tr(id="timer")
+        td
+          p 25:00
+
+  <button onclick="display()">Começar</button>
+  
+  script(src='javascripts/timer.js')
