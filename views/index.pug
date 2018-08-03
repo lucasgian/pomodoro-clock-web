@@ -3,6 +3,11 @@ extends layout
 block content
   h1= title
   p Pomodo START #{title} Total #{cont}
+  
+  div
+    if cont >= 4
+      h2 Você deviria dar uma pausa de 10 minutos
+
 
   table(class="center-absolute")
     tbody
