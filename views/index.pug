@@ -10,8 +10,13 @@ block content
         td
           p 25:00
 
-  <button onclick="display()">Começar</button>
-  <button onclick="display(1, endTimeInterval)">Iniciar intervalo</button>
+  div
+    label Defina um valor inteiro, em minutos como tempo, superio a 1 minuto.
+    input(type="text", id="time" placeholder="30")
+    button(onclick="customDisplay()") Iniciar
+
+  button(onclick="display()") Começar
+  button(onclick="display(1, endTimeInterval)") Iniciar intervalo
   
   script(src='javascripts/chrome-notification.js')
   script(src='javascripts/message.js')

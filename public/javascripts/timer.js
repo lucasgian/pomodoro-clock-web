@@ -5,7 +5,7 @@ function startTimer(minutes, display, endedFunction) {
 	display.textContent = minutes + ":00";
 	minutes--;
     
-	let timer = setInterval(function () { // é execultado a cada segundo decrementado o timer, até zerar o ele
+	let timer = setInterval(function () { // é execultado a cada segundo decrementado o timer, até zerá-lo-á
 		if (seconds == 0) {
 			if (minutes == 0) {
 				clearInterval(timer);
@@ -34,7 +34,7 @@ function startTimer(minutes, display, endedFunction) {
  *  Controle das chamadas de funções, do cronômetro
  * 	
  * 	@param {Number} time O tempo do cronômetro, como default é 25min
- * 	@param {Function} callback Define qual messagem será mostrada após o termino do cronômetro
+ * 	@param {Function} callback Define qual messagem será mostrada, após o termino do cronômetro
 */ 	
 function display(time=25, callback=endTime) {
 	
@@ -43,3 +43,21 @@ function display(time=25, callback=endTime) {
     startTimer(time, display.insertCell(0), callback);
 	
 }
+
+// prepara o timer com valor personalizado
+
+function customDisplay() {
+	
+	const time = document.getElementById("time").value;
+
+	if ( time < 1 || isNaN(time) ) {
+
+		alert("O tempo deve ser um número inteiro igual ou superio a 1 minuto");
+		throw "Time invalid";
+		
+	}
+
+	display(time);
+	
+}
+
