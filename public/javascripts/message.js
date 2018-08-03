@@ -3,6 +3,7 @@
 
 function endTime() {
 
+	plusOne();
 	this.classList.add("interval");
 	notifyMe("Hora do intervalo!", "Partiu tomar café!");
 	soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
@@ -17,6 +18,18 @@ function endTimeInterval() {
 	notifyMe("O intervalo acabou!", "Hora de trabalhar!");
 	soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
     
+}
+
+// solicita ao serviço um acrescimo de mais um a variavel de sessão
+// sempre que o timer terminar é acionada, exceto o timer de intervalo
+
+function plusOne() {
+
+	let req = new XMLHttpRequest();
+	req.open("GET", "/pomodoro/cont");
+	req.send(null);
+	console.log(req.responseText);
+	
 }
 
 

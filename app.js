@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cookieSession = require('cookie-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,13 +20,42 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['cont'],
+  maxAge: 24 * 60 * 60 * 1000 // 24 horas
+}));
+
+// contador de ciclos do timer
+app.use('/pomodoro/cont', function (req, res, next) {
+  
+  if ( req.session.views === undefined ) {
+    
+    req.session.views =  1;
+
+  } else {
+
+    req.session.views =  req.session.views + 1;
+
+  }
+
+  console.log(req.session.views);
+  res.end(req.session.views + ' views');
+
+});
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {

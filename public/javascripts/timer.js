@@ -1,7 +1,7 @@
 // lógica do cronômetro regresivo
 
 function startTimer(minutes, display, endedFunction) {
-	let seconds = 60;
+	let seconds = 3;
 	display.textContent = minutes + ":00";
 	minutes--;
     
@@ -30,18 +30,24 @@ function startTimer(minutes, display, endedFunction) {
     
 }
 
+function displayView() {
+
+}
+
 /**
  *  Controle das chamadas de funções, do cronômetro
  * 	
  * 	@param {Number} time O tempo do cronômetro, como default é 25min
  * 	@param {Function} callback Define qual messagem será mostrada, após o termino do cronômetro
 */ 	
-function display(time=25, callback=endTime) {
+function displayController(time=25, callback=endTime) {
 	
     const display = document.getElementById("timer");
     display.deleteCell(0);
     startTimer(time, display.insertCell(0), callback);
-	
+	setInterval(function () {
+		location.reload();
+	}, 10000);
 }
 
 // prepara o timer com valor personalizado
@@ -57,7 +63,7 @@ function customDisplay() {
 		
 	}
 
-	display(time);
+	displayController(time);
 	
 }
 

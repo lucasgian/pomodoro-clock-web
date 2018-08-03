@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Pomodo START #{title}
+  p Pomodo START #{title} Total #{cont}
 
   table(class="center-absolute")
     tbody
@@ -15,8 +15,8 @@ block content
     input(type="text", id="time" placeholder="30")
     button(onclick="customDisplay()") Iniciar
 
-  button(onclick="display()") Começar
-  button(onclick="display(1, endTimeInterval)") Iniciar intervalo
+  button(onclick="displayController()") Começar
+  button(onclick="displayController(1, endTimeInterval)") Iniciar intervalo
   
   script(src='javascripts/chrome-notification.js')
   script(src='javascripts/message.js')
