@@ -3,8 +3,8 @@
 
 function endTime() {
 
-	this.textContent = "Intervalo!";
 	this.classList.add("interval");
+	notifyMe("Hora do intervalo!", "Partiu tomar café!");
 	soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
     
 }
@@ -13,8 +13,8 @@ function endTime() {
 
 function endTimeInterval() {
 
-	this.textContent = "Hora da ação!";
 	this.classList.add("afterInterval");
+	notifyMe("O intervalo acabou!", "Hora de trabalhar!");
 	soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
     
 }
@@ -26,10 +26,22 @@ function soundNotice(url) {
 
 	const audio = new Audio();
     audio.src = url;
-    audio.play();
 
-    setTimeout(function() {
-        audio.pause();
-    }, 5000);
+	const promise = audio.play();
+ 
+	if (promise !== undefined) {
+
+		promise.then(_ => {
+
+			setTimeout(function() {
+				audio.pause();
+			}, 5000);
+
+		})
+		.catch(error => {
+
+		});
+
+	}
 	
 }
