@@ -1,7 +1,6 @@
 // lógica do cronômetro regresivo
 
 function startTimer(minutes, display, endedFunction) {
-
 	let seconds = 60;
 	display.textContent = minutes + ":00";
 	minutes--;
@@ -38,27 +37,9 @@ function startTimer(minutes, display, endedFunction) {
  * 	@param {Function} callback Define qual messagem será mostrada após o termino do cronômetro
 */ 	
 function display(time=25, callback=endTime) {
-
+	
     const display = document.getElementById("timer");
     display.deleteCell(0);
     startTimer(time, display.insertCell(0), callback);
-
-}
-
-// messagem de fim de tempo
-
-function endTime() {
-
-	this.textContent = "Intervalo!";
-    this.classList.add("interval");
-    
-}
-
-// messagem de fim de tempo do intervalo
-
-function endTimeInterval() {
-
-	this.textContent = "Hora da ação!";
-    this.classList.add("afterInterval");
-    
+	
 }
