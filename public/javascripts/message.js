@@ -1,13 +1,13 @@
 
-class Message extends Notify {
+class Message {
 	// messagem de fim de tempo, função callback
 
 	static endTime() {
 
 		Message.moreOne();
 		this.classList.add("interval");
-		Message.notifyMe("Hora do intervalo!", "Partiu tomar café!");
-		Message.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
+		Notify.notifyMe("Hora do intervalo!", "Partiu tomar café!");
+		Notify.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
 		
 	}
 
@@ -16,8 +16,8 @@ class Message extends Notify {
 	static endTimeInterval() {
 
 		this.classList.add("afterInterval");
-		Message.notifyMe("O intervalo acabou!", "Hora de trabalhar!");
-		Message.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
+		Notify.notifyMe("O intervalo acabou!", "Hora de trabalhar!");
+		Notify.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
 		
 	}
 
