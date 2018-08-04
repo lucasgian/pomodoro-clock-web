@@ -115,3 +115,10 @@ function customDisplay() {
 	displayController(time);
 	
 }
+
+// recarregar a página
+function refresh() {
+
+	location.reload();
+
+  }
