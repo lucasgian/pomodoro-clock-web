@@ -1,38 +1,90 @@
-// lógica do cronômetro regresivo
+class Timer {
+	
+	constructor(display) {
+	
+		this._display = display;
+	
+	}
+	
+	get display() {
 
-function startTimer(minutes, display, endedFunction) {
-	let seconds = 3;
-	display.textContent = minutes + ":00";
-	minutes--;
-    
-	let timer = setInterval(function () { // é execultado a cada segundo decrementado o timer, até zerá-lo-á
-		if (seconds == 0) {
-			if (minutes == 0) {
-				clearInterval(timer);
+		return this._display;
 
-				if (endedFunction) {
-					endedFunction.call(display);
-					return;
-				}
-			} else {
-				minutes--;
-				seconds = 59;
-			}
+	}
+
+
+	// configura as variaveis para o iniciar o loop no metódo decreasingTime
+
+	start(minutes, endedFunction) {
+		let seconds = 60;
+		let display = this.display;
+
+		if (minutes < 10) {
+
+			display.textContent = "0" + minutes + ":00";
+
 		} else {
-			seconds--;
+
+			display.textContent = minutes + ":00";
+
 		}
 
-		let _minutes = (minutes < 10 ? ("0" + minutes) : minutes); // se minutes for menor que 10, então adiciona um zero a esquedar (09:00)
-		let _seconds = (seconds < 10 ? ("0" + seconds) : seconds); // se seconds for menor que 10, então adiciona um zero a esquedar (00:09)
+		minutes--;
+		
+		this.decreasingTime(minutes, seconds, endedFunction, display);
+		
+	}
 
-		display.textContent = _minutes + ":" + _seconds;
-    }, 1000);
-    
+
+	// lógica do cronômetro regresivo
+	// é execultado a cada segundo decrementado o timer, até zerá-lo-á
+	
+	decreasingTime(minutes, seconds, endedFunction, display) {
+
+		setInterval(function () { 
+			if (seconds == 0) {
+
+				if (minutes == 0) {
+					clearInterval(timer);
+
+					if (endedFunction) {
+
+						Message.endTimeInterval.call(display);
+						return;
+
+					} else {
+
+						Message.endTime.call(display);
+						return;
+
+					}
+				} else {
+
+					minutes--;
+					seconds = 59;
+
+				}
+				
+			} else {
+
+				seconds--;
+
+			}
+
+			let minutesAux = (minutes < 10 ? ("0" + minutes) : minutes); // se minutes for menor que 10, então adiciona um zero a esquedar (09:00)
+			let secondsAux = (seconds < 10 ? ("0" + seconds) : seconds); // se seconds for menor que 10, então adiciona um zero a esquedar (00:09)
+
+			display.textContent = minutesAux + ":" + secondsAux;
+			
+		}, 1000);
+
+
+	}
+
+	
 }
 
-function displayView() {
 
-}
 
 /**
  *  Controle das chamadas de funções, do cronômetro
@@ -40,14 +92,18 @@ function displayView() {
  * 	@param {Number} time O tempo do cronômetro, como default é 25min
  * 	@param {Function} callback Define qual messagem será mostrada, após o termino do cronômetro
 */ 	
-function displayController(time=25, callback=endTime) {
+function displayController(time=25, interval=false) {
 	
-    const display = document.getElementById("timer");
-    display.deleteCell(0);
-    startTimer(time, display.insertCell(0), callback);
-	setInterval(function () {
+    
+	const timer = new Timer(document.getElementById("timer"));
+	timer.start(time, interval);
+	
+	setInterval(function () { // após terminar, o timer é reiniciado
+
 		location.reload();
+
 	}, 10000);
+
 }
 
 // prepara o timer com valor personalizado
