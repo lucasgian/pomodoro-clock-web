@@ -6,8 +6,8 @@ class Message {
 
 		Message.moreOne();
 		this.classList.add("interval");
-		Notify.notifyMe("Hora do intervalo!", "Partiu tomar café!");
-		Notify.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
+		Message.notifyMe("Hora do intervalo!", "Partiu tomar café!");
+		Message.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
 		
 	}
 
@@ -16,8 +16,8 @@ class Message {
 	static endTimeInterval() {
 
 		this.classList.add("afterInterval");
-		Notify.notifyMe("O intervalo acabou!", "Hora de trabalhar!");
-		Notify.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
+		Message.notifyMe("O intervalo acabou!", "Hora de trabalhar!");
+		Message.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
 		
 	}
 
@@ -31,6 +31,54 @@ class Message {
 		req.send(null);
 		console.log(req.responseText);
 		
+	}
+
+
+	static soundNotice(url) {
+
+		const audio = new Audio();
+		audio.src = url;
+
+		const promise = audio.play();
+	
+		if (promise !== undefined) {
+
+			promise.then(_ => {
+
+				setTimeout(function() {
+					
+					audio.pause();
+					location.reload();
+				
+				}, 5000);
+
+			})
+			.catch(error => {
+
+				console.log(error);
+
+			});
+
+		}
+		
+	}
+
+	// chrome-notification
+	static notifyMe(title, container) {
+
+		if (Notification.permission !== "granted") {
+			Notification.requestPermission();
+		}
+		
+		else {
+	
+			const notification = new Notification(title, {
+				icon: 'https://pbs.twimg.com/profile_images/644212176065024000/9cC8iFCN_400x400.jpg',
+				body: container,
+			});
+	
+		}
+	
 	}
 	
 }
