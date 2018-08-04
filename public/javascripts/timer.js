@@ -41,7 +41,7 @@ class Timer {
 	
 	decreasingTime(minutes, seconds, endedFunction, display) {
 
-		setInterval(function () { 
+		let timer = setInterval(function () { 
 			if (seconds == 0) {
 
 				if (minutes == 0) {
@@ -94,15 +94,8 @@ class Timer {
 */ 	
 function displayController(time=25, interval=false) {
 	
-    
 	const timer = new Timer(document.getElementById("timer"));
 	timer.start(time, interval);
-	
-	setInterval(function () { // após terminar, o timer é reiniciado
-
-		location.reload();
-
-	}, 10000);
 
 }
 
@@ -123,3 +116,12 @@ function customDisplay() {
 	
 }
 
+
+function clear() {
+	
+	let req = new XMLHttpRequest();
+	req.open("GET", "/final");
+	req.send(null);
+	console.log(req.responseText);
+
+}   

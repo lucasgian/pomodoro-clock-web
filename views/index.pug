@@ -1,13 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Pomodo START #{title} Total #{cont}
+  h1(class="text-monospace") Pomodoro número #{cont}
+ 
   
   div
     if cont >= 4
-      h2 Você deviria dar uma pausa de 10 minutos
-
+      h3(class="alert alert-danger text-center") Considere dar uma pausa de 10 min no próximo intervalo
 
   table(class="center-absolute")
     tbody
@@ -15,14 +14,38 @@ block content
         td
           p 25:00
 
-  div
+  div(class="d-inline p-2 bg-primary text-white")
     label Defina um valor inteiro, em minutos como tempo, superio a 1 minuto.
-    input(type="text", id="time" placeholder="30")
-    button(onclick="customDisplay()") Iniciar
-
-  button(onclick="displayController()") Começar
-  button(onclick="displayController(1, endTimeInterval)") Iniciar intervalo
   
-  script(src='javascripts/chrome-notification.js')
-  script(src='javascripts/message.js')
-  script(src='javascripts/timer.js')
+  br
+  br  
+
+
+   
+  .form-inline
+    div(class="form-group mb-2")
+      label(class="text-monospace") Tempo personalizado
+    
+    div(class="form-group mx-sm-3 mb-2")    
+      input(type="text", id="time", placeholder="30", class="form-control")
+    
+    button(class="btn btn-dark mb-2", onclick="customDisplay()") Iniciar
+
+
+  .form-inline
+    div(class="form-group mb-2")
+      button(class="btn btn-dark mb-2", onclick="displayController()") 25 min
+    
+    div(class="form-group mx-sm-3 mb-2")    
+      button(class="btn btn-danger mb-2", onclick="displayController(5, true)") Iniciar intervalo
+    
+  br
+  br
+  br
+  button(class="btn mb-2", onclick="clear(5)") Limpar
+
+  
+  script(src='javascripts/permission-chrome-notification.js')
+  script(src='javascripts/Notify.js')
+  script(src='javascripts/Message.js')
+  script(src='javascripts/Timer.js')

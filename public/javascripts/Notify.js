@@ -14,7 +14,10 @@ class Notify {
 			promise.then(_ => {
 
 				setTimeout(function() {
+					
 					audio.pause();
+					location.reload();
+				
 				}, 5000);
 
 			})
