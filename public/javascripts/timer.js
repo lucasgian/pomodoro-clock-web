@@ -115,13 +115,3 @@ function customDisplay() {
 	displayController(time);
 	
 }
-
-
-function clear() {
-	
-	let req = new XMLHttpRequest();
-	req.open("GET", "/final");
-	req.send(null);
-	console.log(req.responseText);
-
-}   
