@@ -1,60 +1,37 @@
 
-// messagem de fim de tempo, função callback
+class Message extends Notify {
+	// messagem de fim de tempo, função callback
 
-function endTime() {
+	static endTime() {
 
-	plusOne();
-	this.classList.add("interval");
-	notifyMe("Hora do intervalo!", "Partiu tomar café!");
-	soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
-    
-}
+		Message.moreOne();
+		this.classList.add("interval");
+		Message.notifyMe("Hora do intervalo!", "Partiu tomar café!");
+		Message.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
+		
+	}
 
-// messagem de fim de tempo do intervalo, função callback
+	// messagem de fim de tempo do intervalo, função callback
 
-function endTimeInterval() {
+	static endTimeInterval() {
 
-	this.classList.add("afterInterval");
-	notifyMe("O intervalo acabou!", "Hora de trabalhar!");
-	soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
-    
-}
+		this.classList.add("afterInterval");
+		Message.notifyMe("O intervalo acabou!", "Hora de trabalhar!");
+		Message.soundNotice("http://www.danosongs.com/music/danosongs.com-inspirabeat.mp3");
+		
+	}
 
-// solicita ao serviço um acrescimo de mais um a variavel de sessão
-// sempre que o timer terminar é acionada, exceto o timer de intervalo
+	// solicita ao serviço um acrescimo de mais um a variavel de sessão
+	// sempre que o timer terminar é acionada, exceto o timer de intervalo
 
-function plusOne() {
+	static moreOne() {
 
-	let req = new XMLHttpRequest();
-	req.open("GET", "/pomodoro/cont");
-	req.send(null);
-	console.log(req.responseText);
-	
-}
-
-
-// notificação com som
-
-function soundNotice(url) {
-
-	const audio = new Audio();
-    audio.src = url;
-
-	const promise = audio.play();
- 
-	if (promise !== undefined) {
-
-		promise.then(_ => {
-
-			setTimeout(function() {
-				audio.pause();
-			}, 5000);
-
-		})
-		.catch(error => {
-
-		});
-
+		let req = new XMLHttpRequest();
+		req.open("GET", "/pomodoro/cont");
+		req.send(null);
+		console.log(req.responseText);
+		
 	}
 	
 }
+
