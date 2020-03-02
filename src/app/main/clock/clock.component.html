@@ -1,1 +1,28 @@
-<p>clock works!</p>
+<h1> {{ title }} </h1>
+<mat-card class="example-card">
+  <mat-card-header>
+   <!-- <div mat-card-avatar class="example-header-image"></div> -->
+  </mat-card-header>
+  <mat-card-content>
+    <div class="center-content"> 
+      <h1 style="font-family: 'Trade Winds'">
+        <countdown #cd [config]="{ leftTime: time, format: 'm:s' }"></countdown>
+      </h1>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <button (click)="addValue()" mat-stroked-button>
+          <i class="material-icons">add</i>
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button (click)="subtractValue()" mat-stroked-button>
+          <i class="material-icons">remove</i>
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-actions>
+</mat-card>
+
