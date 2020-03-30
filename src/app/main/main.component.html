@@ -1,9 +1,9 @@
 
 <mat-grid-list cols="2" rowHeight="2:2">
     <mat-grid-tile>
-        <app-clock [title]="'Tempo da Seção'" [time]="'25'"></app-clock>
+        <app-clock [title]="'Tempo da Seção'" [start]="flags.timeToWork" [time]="'25'"></app-clock>
     </mat-grid-tile>
     <mat-grid-tile>
-        <app-clock [title]="'Intervalo'" [time]="'25'"></app-clock>
+        <app-clock [title]="'Intervalo'" [start]="flags.timeToBreak" [time]="'25'"></app-clock>
     </mat-grid-tile>
 </mat-grid-list>

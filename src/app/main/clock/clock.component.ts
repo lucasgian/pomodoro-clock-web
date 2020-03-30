@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { CountdownComponent } from 'ngx-countdown';
 
 @Component({
@@ -10,11 +10,17 @@ export class ClockComponent implements OnInit {
 
   @Input() title: String
   @Input() time: number = 0
+  @Input() start = false
   @ViewChild('cd') private counter: CountdownComponent
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { }
+  
+  ngAfterViewInit() {
+    if (!this.start) {
+      this.stop()
+    }
   }
 
   subtractValue() {
